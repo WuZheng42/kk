@@ -1,48 +1,49 @@
 public class IntList {
-	public int first;
-	public IntList rest;
+    public int first;
+    public IntList rest;
 
-	public IntList(int f, IntList r) {
-		first = f;
-		rest = r;
-	}
+    public IntList(int f, IntList r) {
+        first = f;
+        rest = r;
+    }
+    /**
+     * Returns an IntList identical to L, but with
+     * each element incremented by x. L is not allowed
+     * to change.
+     */
+    public static IntList incrList(IntList L, int x) {
+        /* Your code here. */if (L == null) {
+            return null; // 基本情况：空列表
+        } else {
+            // 递归情况：返回新列表，其中当前元素增加了指定值，同时递归处理剩余部分
+            return new IntList(L.first + x, incrList(L.rest, x));
+        }
 
-	/** Return the size of the list using... recursion! */
-//	public int size() {
+    }
+
+    /**
+     * Returns an IntList identical to L, but with
+     * each element incremented by x. Not allowed to use
+     * the 'new' keyword.
+     */
+//    public static IntList dincrList(IntList L, int x) {
+//        /* Your code here. */
+//        return L;
+//    }
+
+    public static void main(String[] args) {
+        IntList L = new IntList(5, null);
+        L.rest = new IntList(7, null);
+        L.rest.rest = new IntList(9, null);
+
+//        System.out.println(L.size());
+//        System.out.println(L.iterativeSize());
 //
-//		if(rest == null){
-//			return 1;
-//		}return 1 + this.rest.size();
-//
-//	}
-
-//	/** Return the size of the list using no recursion! */
-//	public int iterativeSize() {
-//		IntList p = this;
-//		int total = 0;
-//		while (p != null){
-//			total += 1;
-//			p = p.rest;
-//		}return total;
-//
-//		}
-
-
-
-
-	/** Returns the ith value in this list.*/
-	public int get(int i) {
-		if(i == 0){
-			return first;
-		}return rest.get(i - 1);
-
-	}
-
-	public static void main(String[] args) {
-		IntList L = new IntList(15, null);
-		L = new IntList(10, L);
-		L = new IntList(5, L);
-
-		System.out.println(L.get(2));
-	}
-} //sail away to the expense of space
+//        Test your answers by uncommenting.Or copy and paste the
+//        code for incrList and dincrList into IntList.java and
+//        run it in the visualizer.
+//               System.out.println(L.get(1));
+       System.out.println(incrList(L, 3));
+//        System.out.println(dincrList(L, 3));
+    }
+}
